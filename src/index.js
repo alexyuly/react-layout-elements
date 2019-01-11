@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 
 import Box from './Box'
+import Frame from './Frame'
 import Media from './Media'
 import Type from './Type'
 
@@ -17,14 +18,14 @@ const Titlebar = () => (
   </Box>
 )
 
-const Sidebar = () => (
+const NavContent = () => (
   <Box
     layout='down'
-    style='sidebar'
+    style='navContent'
     width={({ widescreen }) => widescreen && 300}
   >
     <Type>
-      Hi, I'm the "sidebar"! You might add some navigation content to me.
+      Hi, I'm the "nav content"! You might add some navigation content to me.
     </Type>
   </Box>
 )
@@ -47,23 +48,21 @@ const MainContent = () => (
   </Box>
 )
 
-const Example = () => (
-  <Box
+const App = () => (
+  <Frame
+    fontSize={12}
     layout='rows'
-    withMedia={{
-      widescreen: {
-        minWidth: 800,
-        screen: true,
-      },
+    media={{
+      widescreen: 'screen and (min-width: 800px)',
     }}
-    withStyles={{
+    styles={{
       titlebar: {
         backgroundColor: '#222222',
         color: '#FFFFFF',
-        fontSize: 20,
+        fontSize: 1.5, // Font sizes are given in em units by default.
         fontWeight: 'bold',
       },
-      sidebar: {
+      navContent: {
         backgroundColor: '#CCCCCC',
         color: '#111111',
       },
@@ -77,10 +76,10 @@ const Example = () => (
     <Box
       layout={({ widescreen }) => (widescreen ? 'columns' : 'down')}
     >
-      <Sidebar />
+      <NavContent />
       <MainContent />
     </Box>
-  </Box>
+  </Frame>
 )
 
-ReactDom.render(<Example />, document.body.appendChild(document.createElement('div')))
+ReactDom.render(<App />, document.body.appendChild(document.createElement('div')))
