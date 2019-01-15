@@ -1,25 +1,25 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 
-import Content from './Content';
+import Content from './Content'
 import Frame from './Frame'
-
-document.body.style.margin = 0
-document.documentElement.style.fontSize = '18px'
+import Screen from './Screen'
 
 const App = () => (
-  <Frame
+  <Screen
+    contentMargin='1rem'
     layout='rows'
     media={{
       widescreen: 'screen and (min-width: 800px)',
     }}
+    sizeUnit='18px'
     style={{
       fontFamily: 'sans-serif',
     }}
   >
     <Frame
       layout='across'
-      size={63}
+      size='3.5rem'
       style={{
         backgroundColor: '#222222',
         color: '#CCCCCC',
@@ -36,7 +36,7 @@ const App = () => (
     >
       <Frame
         align='start'
-        size={300}
+        size='18rem'
         style={{
           backgroundColor: '#444444',
           color: '#CCCCCC',
@@ -61,7 +61,7 @@ const App = () => (
         </Content>
       </Frame>
     </Frame>
-  </Frame>
+  </Screen>
 )
 
 ReactDom.render(<App />, document.body.appendChild(document.createElement('div')))
