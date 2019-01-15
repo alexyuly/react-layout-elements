@@ -1,84 +1,57 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 
-import Box from './Box'
+import Content from './Content';
 import Frame from './Frame'
-import Media from './Media'
-import Type from './Type'
-
-const Titlebar = () => (
-  <Box
-    height={50}
-    layout='across'
-    style='titlebar'
-  >
-    <Type>
-      My App
-    </Type>
-  </Box>
-)
-
-const NavContent = () => (
-  <Box
-    layout='down'
-    style='navContent'
-    width={({ widescreen }) => widescreen && 300}
-  >
-    <Type>
-      Hi, I'm the "nav content"! You might add some navigation content to me.
-    </Type>
-  </Box>
-)
-
-const MainContent = () => (
-  <Box
-    layout='down'
-    style='mainContent'
-  >
-    <Type>
-      Hi, I'm the "main content"! You may add whatever you like.
-    </Type>
-    <Media>
-      {({ widescreen }) => widescreen && (
-        <Type>
-          This text is only visible on screens with a min width of 800!
-        </Type>
-      )}
-    </Media>
-  </Box>
-)
 
 const App = () => (
   <Frame
-    fontSize={12}
     layout='rows'
-    media={{
-      widescreen: 'screen and (min-width: 800px)',
-    }}
-    styles={{
-      titlebar: {
-        backgroundColor: '#222222',
-        color: '#FFFFFF',
-        fontSize: 1.5, // Font sizes are given in em units by default.
-        fontWeight: 'bold',
-      },
-      navContent: {
-        backgroundColor: '#CCCCCC',
-        color: '#111111',
-      },
-      mainContent: {
-        backgroundColor: '#FFFFFF',
-        color: '#111111',
-      },
+    style={{
+      fontFamily: 'sans-serif',
+      fontSize: 12,
     }}
   >
-    <Titlebar />
-    <Box
-      layout={({ widescreen }) => (widescreen ? 'columns' : 'down')}
+    <Frame
+      layout='across'
+      size={50}
+      style={{
+        backgroundColor: '#222222',
+        color: '#CCCCCC',
+        fontSize: '1.5em',
+      }}
     >
-      <NavContent />
-      <MainContent />
-    </Box>
+      <Content>
+        My App
+      </Content>
+    </Frame>
+    <Frame
+      layout='columns'
+    >
+      <Frame
+        align='start'
+        size={300}
+        style={{
+          backgroundColor: '#444444',
+          color: '#CCCCCC',
+        }}
+      >
+        <Content>
+          Nav content area
+        </Content>
+      </Frame>
+      <Frame
+        align='start'
+        style={{
+          backgroundColor: '#CCCCCC',
+          color: '#222222',
+        }}
+      >
+        <Content>
+          Main content area
+        </Content>
+      </Frame>
+    </Frame>
   </Frame>
 )
 
