@@ -4,21 +4,27 @@ import ReactDom from 'react-dom'
 import Content from './Content';
 import Frame from './Frame'
 
+document.body.style.margin = 0
+document.documentElement.style.fontSize = '18px'
+
 const App = () => (
   <Frame
     layout='rows'
+    media={{
+      widescreen: 'screen and (min-width: 800px)',
+    }}
     style={{
       fontFamily: 'sans-serif',
-      fontSize: 12,
     }}
   >
     <Frame
       layout='across'
-      size={50}
+      size={63}
       style={{
         backgroundColor: '#222222',
         color: '#CCCCCC',
-        fontSize: '1.5em',
+        fontSize: '1.5rem',
+        lineHeight: 1,
       }}
     >
       <Content>
@@ -26,7 +32,7 @@ const App = () => (
       </Content>
     </Frame>
     <Frame
-      layout='columns'
+      layout={media => (media.widescreen ? 'columns' : 'down')}
     >
       <Frame
         align='start'
@@ -38,6 +44,9 @@ const App = () => (
       >
         <Content>
           Nav content area
+        </Content>
+        <Content>
+          Add some navigation content here.
         </Content>
       </Frame>
       <Frame

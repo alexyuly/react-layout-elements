@@ -1,15 +1,23 @@
 import React from 'react'
 
+import ContentMarginContext from './ContentMarginContext'
+
 const Content = ({
   children,
 }) => (
-  <span
-    style={{
-      margin: 8,
-    }}
-  >
-    {children}
-  </span>
+  <ContentMarginContext.Consumer>
+    {contentMargin => 
+      <div
+        style={{
+          clear: 'none',
+          float: 'none',
+          margin: contentMargin,
+        }}
+      >
+        {children}
+      </div>
+    }
+  </ContentMarginContext.Consumer>
 )
 
 export default Content
